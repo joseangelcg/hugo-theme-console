@@ -1,12 +1,11 @@
 {{ define "main" }}
 
 <p>
-{{ with .Site.GetPage "/about"}}
-{{ .Summary }}<a href="about/">(more)</a>
-{{ end }}
+{{ .Content }}
+<a href="about/">(Want to know more?...)</a>
 </p>
-<br/>
 
+{{ if len (where .Site.RegularPages "Section" "eq" "posts") }}
 <h1>Latest posts</h1>
 
 <div class="posts-list">
@@ -22,7 +21,9 @@
     {{ end }}
 {{ end }}
 </div>
+{{ end }}
 
+{{ if len (where .Site.RegularPages "Section" "eq" "photos") }}
 <h1>Latest photos</h1>
 
 <div class="image-grid">
@@ -38,5 +39,7 @@
     {{ end }}
 {{ end }}
 </div>
+
+{{ end }}
 
 {{ end }}
